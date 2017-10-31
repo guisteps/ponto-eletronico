@@ -1,0 +1,43 @@
+<style type="text/css">     
+#timediv {
+    background: #fff;
+    text-align: center;
+    width: 150px;
+	  height: 60px;
+    color: #000;
+	  font-size: 30px;
+	  font-family: monospace;
+    border: 2px #337ab7 groove;
+	  border-radius: 10px;
+    position: relative;
+    bottom: 10px;
+}
+</style>
+
+
+<div style="width: 300px; height: 350px; border-radius: 25px;
+          margin: 0 auto; background-color: mistyrose;">
+      <div style="margin-left: 70px;">
+   
+   <br>
+   <br>
+	   <div id="timediv">
+	   </div>
+	<br>   
+    	
+	<label class="radio"><input type="radio" [(ngModel)]="marcacao" [value]="1">Entrada</label>
+    <label class="radio"><input type="radio" [(ngModel)]="marcacao" [value]="2">Ida Intervalo</label>
+    <label class="radio"><input type="radio" [(ngModel)]="marcacao" [value]="3">Volta Intervalo</label>
+	<label class="radio"><input type="radio" [(ngModel)]="marcacao" [value]="4">Saida</label>
+	<br>
+	<br>
+	
+      <div style="margin-left: 40px;">
+        <nav>
+          <button (click)="marcarPonto()"
+				  type="submit" class="btn btn-primary">Marcar</button>
+        </nav>
+      </div>
+	  
+    </div>
+  </div>

@@ -1,0 +1,116 @@
+'use strict';
+
+class Ponto{
+
+	constructor(){
+		this.Mongodb = require("./db");
+	}
+
+	getPontos(callback){
+		this.Mongodb.onConnect( (db,ObjectID) => {
+			db.collection('pontos').find().toArray( (err, result) => {
+				callback(result);
+				db.close();
+			});
+		});
+	}
+	
+	
+	getFuncPonto(pCpf, pDia, callback){
+		this.Mongodb.onConnect( (db,ObjectID) => {
+			db.collection('pontos').find( { cpf: pCpf, dia: pDia } ).toArray( (err, result) => {
+				callback(result);
+				db.close();
+			});
+		});
+	}
+
+
+	addEntrada(data,callback){
+		var response = {};
+
+		this.Mongodb.onConnect( (db,ObjectID) => {
+			db.collection('pontos').updateOne( 
+				{ cpf: data.cpf, dia: data.dia }, 
+				{ $set: { "entrada" : data.entrada } },
+				{ upsert: true },	
+			(err, result) => {
+				if(err){
+					response.error = true;
+					response.message = 'Algo deu errado.';
+					callback(response);	
+				}else{
+					callback(result);
+				}
+			});	
+			db.close();
+		});
+	}
+	
+	addIdaIntervalo(data,callback){
+		var response = {};
+
+		this.Mongodb.onConnect( (db,ObjectID) => {
+			db.collection('pontos').updateOne( 
+				{ cpf: data.cpf, dia: data.dia }, 
+				{ $set: { "idaIntervalo" : data.idaIntervalo } },
+				{ upsert: true },	
+			(err, result) => {
+				if(err){
+					response.error = true;
+					response.message = 'Algo deu errado.';
+					callback(response);	
+				}else{
+					callback(result);
+				}
+			});	
+			db.close();
+		});
+	}
+	
+	addVoltaIntervalo(data,callback){
+		var response = {};
+
+		this.Mongodb.onConnect( (db,ObjectID) => {
+			db.collection('pontos').updateOne( 
+				{ cpf: data.cpf, dia: data.dia }, 
+				{ $set: { "voltaIntervalo" : data.voltaIntervalo } },
+				{ upsert: true },	
+			(err, result) => {
+				if(err){
+					response.error = true;
+					response.message = 'Algo deu errado.';
+					callback(response);	
+				}else{
+					callback(result);
+				}
+			});	
+			db.close();
+		});
+	}
+	
+	
+	addSaida(data,callback){
+		var response = {};
+
+		this.Mongodb.onConnect( (db,ObjectID) => {
+			db.collection('pontos').updateOne( 
+				{ cpf: data.cpf, dia: data.dia }, 
+				{ $set: { "saida" : data.saida } },
+				{ upsert: true },	
+			(err, result) => {
+				if(err){
+					response.error = true;
+					response.message = 'Algo deu errado.';
+					callback(response);	
+				}else{
+					callback(result);
+				}
+			});	
+			db.close();
+		});
+	}
+
+}
+
+module.exports = new Ponto();

@@ -1,14 +1,33 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>PontoEletronico2</title>
   <base href="/">
+  <meta charset="Content-Type: text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ponto Eletrônico</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
+<script type="text/javascript">
+	window.onload = setInterval(timestamphome, 1000);
+	
+	 function timestamphome(){
+	 var date;
+	 date = new Date();
+
+	 var time = document.getElementById('timediv');
+   if(time != null){
+     time.innerHTML = date.toLocaleTimeString(); 
+   } 
+	 
+  }
+</script>
+
+
 <body>
-  <app-root></app-root>
+   <my-app></my-app>
+  
 </body>
 </html>

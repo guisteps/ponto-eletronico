@@ -1,10 +1,25 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Funcionario } from './back/funcionario';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'my-app',
+  templateUrl: './app.component.html'
 })
+
 export class AppComponent {
-  title = 'app';
+  
+  public nome: string = '';
+  public logado: boolean = false;
+
+  constructor( public router: Router){}
+
+  ngOnInit(){
+  	 this.router.navigate(['/login']);
+	}
+	
+  onLogin(funcionario: Funcionario){
+	this.logado = true;
+	this.nome = funcionario.nome;
+  }
 }

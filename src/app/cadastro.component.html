@@ -1,0 +1,35 @@
+<form #loginForm="ngForm">
+<div style="width: 450px; height: 410px; border-radius: 25px;
+          margin: 0 auto; background-color: mistyrose;">
+      <div style="margin-left: 70px;">
+        <br>
+        <label>CPF: </label>
+        <input type="form-text" class="form-control" name="cpf" style="width:150px;" 
+               placeholder="Digite seu CPF" maxlength="11" [(ngModel)]="funcionario.cpf" required >				
+		
+    <br>
+       <label>Senha: </label>
+       <input type="password" class="form-control" style="width:150px;"
+              name="senha" placeholder="Senha" minlength="4" [(ngModel)]="funcionario.senha" required >
+		
+    <br>   
+     <label>Nome: </label>
+        <input type="form-text" class="form-control" style="width:350px;"
+               name="nome" placeholder="Nome completo" [(ngModel)]="funcionario.nome" required >
+	
+		
+	<div class="checkbox">
+	  <label><input type="checkbox" [(ngModel)]="funcionario.adm">Administrador</label>
+	</div>
+	<br>
+	
+      <div>
+          <button (click)="addFunc()" [disabled]="!loginForm.form.valid"
+                  type="submit" class="btn btn-primary">Salvar</button>
+
+          <button (click)="limpar()" 
+                  type="submit" class="btn btn-primary">Limpar</button>
+      </div>
+    </div>
+  </div>
+ </form>
