@@ -10,13 +10,15 @@
     <br>
        <label>Senha: </label>
        <input type="password" [(ngModel)]="funcLogin.senha" name="senha"
-			        class="form-control" placeholder="Senha" style="width:150px;">   
-   <br>   
-   
-      <div style="margin-left: 40px;">
+			        class="form-control" placeholder="Senha" style="width:150px;">     
+   <br> 
+      <div style="margin-left: -7px;">
         <nav>
           <button (click)="login()"
-				type="submit" class="btn btn-primary">Login</button>
+				          type="submit" class="btn btn-primary">Login</button>
+
+          <button type="submit" class="btn btn-primary" (click)="cadastro()"
+                  style="margin-left: 15px;" routerLink="/cadastro" routerLinkActive="active">Cadastro</button>
         </nav>
       </div>
     </div>

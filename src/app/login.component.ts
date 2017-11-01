@@ -40,4 +40,8 @@ export class LoginComponent implements OnChanges{
 			}	
 	}
 
+	cadastro(){
+		this.router.navigate(['/cadastro']);
+	}
+
 }
