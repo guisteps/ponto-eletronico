@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Funcionario } from './back/funcionario';
 import { FuncionarioService } from './servicos/funcionario.service';
-import { PontoComponent } from './ponto.component';
 import { AppComponent } from './app.component';
 import { FuncionarioLogadoService } from './servicos/funcionario-logado.service';
 
@@ -22,7 +21,8 @@ export class LoginComponent implements OnChanges{
 	
 	constructor(private funcService: FuncionarioService, 
 			    public router: Router, 
-				private funcLogadoService: FuncionarioLogadoService){}
+				private funcLogadoService: FuncionarioLogadoService,
+				private appComponent: AppComponent){}
 	
 	ngOnChanges(changes: any){}
 
@@ -34,7 +34,8 @@ export class LoginComponent implements OnChanges{
 				alert("Falha no login!");
 			}else{
 				this.funcLogadoService.funcionario = this.retorno;
-				this.onLogin.emit(this.retorno);
+				this.appComponent.nome = this.retorno.nome;
+				this.appComponent.logado = true;
 				this.router.navigate(['/ponto']);
 				alert("Bem-vindo " + this.retorno.nome);
 			}	

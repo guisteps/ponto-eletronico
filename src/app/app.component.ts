@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Funcionario } from './back/funcionario';
 
@@ -7,6 +7,7 @@ import { Funcionario } from './back/funcionario';
   templateUrl: './app.component.html'
 })
 
+@Injectable()
 export class AppComponent {
   
   public nome: string = '';
@@ -18,8 +19,4 @@ export class AppComponent {
   	 this.router.navigate(['/login']);
 	}
 	
-  onLogin(funcionario: Funcionario){
-	this.logado = true;
-	this.nome = funcionario.nome;
-  }
 }

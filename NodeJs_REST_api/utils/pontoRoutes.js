@@ -26,7 +26,6 @@ class pontoRoutes{
 		
 		
 		this.app.get('/api/ponto-funcionario-dia/:cpf/:dia',(request, response) =>{
-
 			ponto.getFuncPonto( request.params.cpf, request.params.dia, (result) => {
 				if (result) {
 					response.status(200).json({

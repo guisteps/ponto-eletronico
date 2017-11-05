@@ -1,7 +1,4 @@
-/*
-* Angular 2 CRUD application using Nodejs
-* @autthor Shashank Tiwari
-*/
+
 'use strict';
 const express = require("express");
 const cors = require('cors');
