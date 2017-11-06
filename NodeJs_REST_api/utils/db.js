@@ -1,6 +1,7 @@
-"use strict";
+'use strict';
 /*requiring mongodb node modules */
-const  mongodb=require('mongodb');
+const mongodb=require('mongodb');
+const mongoose = require('mongoose');
 const MongoClient = mongodb.MongoClient;
 const ObjectID = mongodb.ObjectID;
 const assert = require('assert');
@@ -14,3 +15,22 @@ module.exports.onConnect = (callback) => {
 	});
 	
 }
+
+	
+module.exports.usersSchema = new mongoose.Schema({
+		cpf: String,
+		nome: String,
+		senha: String,
+		adm: String
+		}, { collection: 'users' }
+	);
+	
+module.exports.pontosSchema = new mongoose.Schema({
+		cpf: String,
+		dia: String,
+		entrada: Date,
+		idaIntervalo: Date,
+		voltaIntervalo: Date,
+		saida: Date
+		}, { collection: 'pontos' }
+	);
