@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ComboBoxModule } from 'ng2-combobox';
+import { FormsModule } from '@angular/forms';
 import { ConsultaComponent } from './consulta.component';
 
 
@@ -11,7 +12,8 @@ import { ConsultaComponent } from './consulta.component';
   ],
   imports: [
     BrowserModule,
-    ComboBoxModule
+    ComboBoxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [ConsultaComponent]

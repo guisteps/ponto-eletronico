@@ -39,6 +39,20 @@ class pontoRoutes{
 			});
 		});
 		
+		this.app.get('/api/ponto-funcionario-mes/:cpf/:mes',(request, response) =>{
+			ponto.getFuncPontoMes( request.params.cpf, request.params.mes, (result) => {
+				if (result) {
+					response.status(200).json({
+						pontos:result
+					});
+				}else{
+					response.status(404).json({
+						message:'Nenhum registro encontrado.'
+					});
+				}
+			});
+		});
+		
 
 		this.app.put('/api/ponto-funcionario-entrada/',(request,response) =>{
 			if (request.body != null) {

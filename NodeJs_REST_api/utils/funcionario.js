@@ -1,8 +1,3 @@
-/*
-* Angular 2 CRUD application using Nodejs
-* @autthor Shashank Tiwari
-*/
-
 'use strict';
 
 class Funcionario{
@@ -14,9 +9,9 @@ class Funcionario{
 
 	getUsers(callback){
 		this.Mongodb.onConnect( (db,ObjectID) => {
-			db.collection('users').find().toArray( (err, result) => {
+			db.collection('users').find().sort({ nome:1 }).toArray( (err, result) => {
 				callback(result);
-				db.close();
+				
 			});
 		});
 	}
@@ -25,7 +20,7 @@ class Funcionario{
 		this.Mongodb.onConnect( (db,ObjectID) => {
 			db.collection('users').find( { cpf: pCpf, senha: pSenha } ).toArray( (err, result) => {
 				callback(result);
-				db.close();
+				
 			});
 		});
 	}
@@ -48,7 +43,7 @@ class Funcionario{
 						callback(result);
 					}
 			});
-			db.close();
+			
 		});
 	}
 

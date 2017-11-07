@@ -7,25 +7,32 @@
 }
 </style>
 
-<form class="form-horizontal">
+<form #consultaForm="ngForm">
 <div style="width: 900px; height: 340px; border-radius: 25px;
           margin: 0 auto; background-color: mistyrose;">
   <div style="margin-left: 50px;">
     <br><br>
     <div class="form-group">
-    	<label class="control-label main-info" style="font-size: 16px;">Mês:</label>
-		<combo-box class="selectContainer main-info" style="width:200px;"
-			[listData]="meses" [displayField]="'name'" [valueField]="'value'" > </combo-box>
-
+ 		
+        <label class="control-label main-info" style="font-size: 16px;">Mês:</label>
+		<select [(ngModel)]="mes" style="width:200px;" name="mes" required>
+		   <option *ngFor="let m of meses" [ngValue]="m.value" > {{m.name}} </option>
+		</select>
+			
 		<label class="control-label main-info" style="font-size: 16px; margin-left: 20px">Ano:</label>
-		<combo-box class="selectContainer main-info" style="width:100px;"
-			[listData]="anos" [displayField]="'name'" [valueField]="'value'" > </combo-box>
-
-		<label class="control-label main-info" style="font-size: 16px; margin-left: 20px">Funcionario:</label>
-		<combo-box class="selectContainer main-info" style="width:300px;"
-			[listData]="meses" [displayField]="'name'" [valueField]="'value'" > </combo-box>
-	
-	<br><br><br><br>
+		<select [(ngModel)]="ano" style="width:100px;" name="ano" required>
+		   <option *ngFor="let a of anos" [ngValue]="a" > {{a}} </option>
+		</select>
+			
+		 <label class="control-label main-info" style="font-size: 16px; margin-left: 20px">Funcionario:</label>
+		 <select [(ngModel)]="cpf" style="width:300px;" name="funcionario" required>
+		   <option *ngFor="let func of funcionarios" [ngValue]="funcionario.cpf" > {{funcionario.nome}} </option>
+		</select> 
+		 
+	<br><br>
+		<button (click)="pesquisar()" [disabled]="!consultaForm.form.valid"
+				 type="submit" class="btn btn-primary">Pesquisar</button>
+	<br><br><br>
 	<div>
 		<table class="table table-hover" style="width: 90% !important">
 		<thead>

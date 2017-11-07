@@ -10,7 +10,7 @@ class Ponto{
 		this.Mongodb.onConnect( (db,ObjectID) => {
 			db.collection('pontos').find().toArray( (err, result) => {
 				callback(result);
-				db.close();
+				
 			});
 		});
 	}
@@ -20,7 +20,16 @@ class Ponto{
 		this.Mongodb.onConnect( (db,ObjectID) => {
 			db.collection('pontos').find( { cpf: pCpf, dia: pDia } ).toArray( (err, result) => {
 				callback(result);
-				db.close();
+				
+			});
+		});
+	}
+	
+	getFuncPontoMes(pCpf, pMes, callback){
+		this.Mongodb.onConnect( (db,ObjectID) => {
+			db.collection('pontos').find( { cpf: pCpf, dia: /pMes/ } ).toArray( (err, result) => {
+				callback(result);
+				
 			});
 		});
 	}
@@ -43,7 +52,7 @@ class Ponto{
 					callback(result);
 				}
 			});	
-			db.close();
+			
 		});
 	}
 	
@@ -64,7 +73,7 @@ class Ponto{
 					callback(result);
 				}
 			});	
-			db.close();
+			
 		});
 	}
 	
@@ -85,7 +94,7 @@ class Ponto{
 					callback(result);
 				}
 			});	
-			db.close();
+			
 		});
 	}
 	
@@ -107,7 +116,7 @@ class Ponto{
 					callback(result);
 				}
 			});	
-			db.close();
+			
 		});
 	}
 

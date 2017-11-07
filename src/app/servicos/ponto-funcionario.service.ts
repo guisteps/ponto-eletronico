@@ -12,6 +12,7 @@ export class PontoFuncionarioService {
   
   private BASE_URL:string = 'http://localhost:8080/api/ponto-funcionario/';
   private BASE_URL_DIA:string = 'http://localhost:8080/api/ponto-funcionario-dia/';
+  private BASE_URL_MES:string = 'http://localhost:8080/api/ponto-funcionario-mes/';
 
     constructor(
 	        private http: Http
@@ -20,6 +21,12 @@ export class PontoFuncionarioService {
 	
 	public getPontoFunc(body: PontoFuncionario) {
 		return this.http.get(this.BASE_URL_DIA + body.cpf.toString() + "/" + body.dia)
+			.map(response => response.json());
+	}
+	
+	
+	public getFuncPontoMes(cpf: string, mes: string) {
+		return this.http.get(this.BASE_URL_MES + cpf + "/" + mes)
 			.map(response => response.json());
 	}
 
