@@ -26,7 +26,7 @@
 			
 		 <label class="control-label main-info" style="font-size: 16px; margin-left: 20px">Funcionario:</label>
 		 <select [(ngModel)]="cpf" style="width:300px;" name="funcionario" required>
-		   <option *ngFor="let func of funcionarios" [ngValue]="funcionario.cpf" > {{funcionario.nome}} </option>
+		   <option *ngFor="let func of funcionarios" [ngValue]="funcionario?.cpf" > {{funcionario?.nome}} </option>
 		</select> 
 		 
 	<br><br>

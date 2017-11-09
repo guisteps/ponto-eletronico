@@ -17,8 +17,6 @@ export class LoginComponent implements OnChanges{
 	public funcLogin:Funcionario = new Funcionario('','','','');
 	public retorno:Funcionario = new Funcionario('','','','');
 	
-	@Output() onLogin = new EventEmitter<Funcionario>();
-	
 	constructor(private funcService: FuncionarioService, 
 			    public router: Router, 
 				private funcLogadoService: FuncionarioLogadoService,
@@ -29,16 +27,18 @@ export class LoginComponent implements OnChanges{
 	login(){
 		this.funcService.login(this.funcLogin.cpf, this.funcLogin.senha)
 			.subscribe(result => this.retorno = result.funcionario[0]);
-
-			if(this.retorno.cpf == "") {
-				alert("Falha no login!");
-			}else{
-				this.funcLogadoService.funcionario = this.retorno;
-				this.appComponent.nome = this.retorno.nome;
-				this.appComponent.logado = true;
-				this.router.navigate(['/ponto']);
-				alert("Bem-vindo " + this.retorno.nome);
-			}	
+			
+		setTimeout(() => {
+				if(typeof this.retorno == 'undefined' || this.retorno.cpf == "") {
+					alert("Falha no login!");
+				}else{
+					this.funcLogadoService.funcionario = this.retorno;
+					this.appComponent.nome = this.retorno.nome;
+					this.appComponent.logado = true;
+					this.router.navigate(['/ponto']);
+					alert("Bem-vindo " + this.retorno.nome);
+				}
+		},200);	
 	}
 
 	cadastro(){

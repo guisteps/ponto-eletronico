@@ -12,7 +12,7 @@ import { Funcionario } from './back/funcionario';
 export class CadastroComponent implements OnChanges {
   
 
-	private funcionario:Funcionario = new Funcionario(null,'','','');
+	public funcionario:Funcionario = new Funcionario(null,'','','');
 
 	constructor(
 			private funcionarioService: FuncionarioService

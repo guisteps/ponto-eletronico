@@ -14,7 +14,7 @@ export class PontoComponent {
 	
 	private dataHoje: string;
 	private ponto:PontoFuncionario; 
-	private marcacao: number;
+	public  marcacao: number;
 	private pontoSalvo:PontoFuncionario;
 
 	constructor(private pontoService: PontoFuncionarioService, private funcLogadoService: FuncionarioLogadoService) {
@@ -33,72 +33,73 @@ export class PontoComponent {
 		this.pontoService.getPontoFunc(this.ponto)
 		.subscribe(result => this.pontoSalvo = result.pontos[0]);
 
-		
-		switch(this.marcacao) { 
-		   case 1: {
-			  if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.entrada == null) {
-				  this.ponto.entrada = new Date();
-				  this.pontoService.addEntrada(this.ponto).subscribe(
-					 response =>  {	if(response.error) { 
-										alert('Erro ao salvar entrada.');
-									} else {
-										alert('Entrada marcada com sucesso');
-									}
-								});
-			   } else{
-				 alert('Entrada ja registrada!');
-			   }
-			   break;
-		   } 
-		   case 2: { 
-			    if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.idaIntervalo == null) {
-				  this.ponto.idaIntervalo = new Date();
-				  this.pontoService.addIdaIntervalo(this.ponto).subscribe(
-					 response =>  {	if(response.error) { 
-										alert('Erro ao salvar Ida Intervalo.');
-									} else {
-										alert('Ida Intervalo marcada com sucesso');
-									}
-								});
-			   } else{
-				 alert('Ida Intervalo ja registrada!');
-			   }
-			   break;
-		   } 
-		   case 3: { 
-			  if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.voltaIntervalo == null) {
-				  this.ponto.voltaIntervalo = new Date();
-				  this.pontoService.addVoltaIntervalo(this.ponto).subscribe(
-					 response =>  {	if(response.error) { 
-										alert('Erro ao salvar Volta Intervalo.');
-									} else {
-										alert('Volta Intervalo marcada com sucesso');
-									}
-								});
-			   } else{
-				 alert('Volta Intervalo ja registrada!');
-			   }
-			   break;
-		   } 
-		   case 4: { 
-			   if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.saida == null) {
-				  this.ponto.saida = new Date();
-				  this.pontoService.addSaida(this.ponto).subscribe(
-					 response =>  {	if(response.error) { 
-										alert('Erro ao salvar Saida.');
-									} else {
-										alert('Saida marcada com sucesso');
-									}
-								});
-			   } else{
-				 alert('Saida ja registrada!');
-			   }
-			   break;
-		   } 
-		    default: {
-		    	alert('Selecione uma opção.');
-		    }
-		} //FIM DO SWITCH		
+		setTimeout(() => {
+			switch(this.marcacao) { 
+			   case 1: {
+				  if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.entrada == null) {
+					  this.ponto.entrada = new Date();
+					  this.pontoService.addEntrada(this.ponto).subscribe(
+						 response =>  {	if(response.error) { 
+											alert('Erro ao salvar entrada.');
+										} else {
+											alert('Entrada marcada com sucesso');
+										}
+									});
+				   } else{
+					 alert('Entrada ja registrada!');
+				   }
+				   break;
+			   } 
+			   case 2: { 
+				    if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.idaIntervalo == null) {
+					  this.ponto.idaIntervalo = new Date();
+					  this.pontoService.addIdaIntervalo(this.ponto).subscribe(
+						 response =>  {	if(response.error) { 
+											alert('Erro ao salvar Ida Intervalo.');
+										} else {
+											alert('Ida Intervalo marcada com sucesso');
+										}
+									});
+				   } else{
+					 alert('Ida Intervalo ja registrada!');
+				   }
+				   break;
+			   } 
+			   case 3: { 
+				  if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.voltaIntervalo == null) {
+					  this.ponto.voltaIntervalo = new Date();
+					  this.pontoService.addVoltaIntervalo(this.ponto).subscribe(
+						 response =>  {	if(response.error) { 
+											alert('Erro ao salvar Volta Intervalo.');
+										} else {
+											alert('Volta Intervalo marcada com sucesso');
+										}
+									});
+				   } else{
+					 alert('Volta Intervalo ja registrada!');
+				   }
+				   break;
+			   } 
+			   case 4: { 
+				   if(typeof this.pontoSalvo == 'undefined' || this.pontoSalvo.saida == null) {
+					  this.ponto.saida = new Date();
+					  this.pontoService.addSaida(this.ponto).subscribe(
+						 response =>  {	if(response.error) { 
+											alert('Erro ao salvar Saida.');
+										} else {
+											alert('Saida marcada com sucesso');
+										}
+									});
+				   } else{
+					 alert('Saida ja registrada!');
+				   }
+				   break;
+			   } 
+			    default: {
+			    	alert('Selecione uma opção.');
+			    }
+			} //FIM DO SWITCH
+		},200);		
 	}
 	
 }
