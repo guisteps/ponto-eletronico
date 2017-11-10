@@ -30,8 +30,8 @@ class Server{
 	appExecute(){
 		this.appConfig();
 		this.includeRoutes();
-		this.app.listen(this.port, this.host, () => {
-			console.log('Listening on http://localhost:3000');
+		this.app.listen(process.env.PORT || this.port, this.host, () => {
+			console.log('nodejs aqui http://localhost:3000');
 		});
 	}
 }
