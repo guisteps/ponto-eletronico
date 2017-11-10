@@ -30,9 +30,8 @@ class Server{
 	appExecute(){
 		this.appConfig();
 		this.includeRoutes();
-		this.app.listen(process.env.PORT || this.port, this.host, () => {
-			console.log('nodejs aqui http://localhost:3000');
-		});
+		this.app.set('port', (process.env.PORT || this.port));
+		console.log('nodezão rodando: ' + this.port);
 	}
 }
 
