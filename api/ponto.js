@@ -27,9 +27,8 @@ class Ponto{
 	
 	getFuncPontoMes(pCpf, pMes, callback){
 		this.Mongodb.onConnect( (db,ObjectID) => {
-			db.collection('pontos').find( { cpf: pCpf, dia: /pMes/ } ).toArray( (err, result) => {
-				callback(result);
-				
+			db.collection('pontos').find( { cpf: pCpf, dia: {$regex:  pMes + "$"} } ).toArray( (err, result) => {
+				callback(result);				
 			});
 		});
 	}

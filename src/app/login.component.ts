@@ -27,7 +27,7 @@ export class LoginComponent implements OnChanges{
 	login(){
 		this.funcService.login(this.funcLogin.cpf, this.funcLogin.senha)
 			.subscribe(result => this.retorno = result.funcionario[0]);
-			
+		
 		setTimeout(() => {
 				if(typeof this.retorno == 'undefined' || this.retorno.cpf == "") {
 					alert("Falha no login!");
@@ -36,9 +36,9 @@ export class LoginComponent implements OnChanges{
 					this.appComponent.nome = this.retorno.nome;
 					this.appComponent.logado = true;
 					this.router.navigate(['/ponto']);
-					alert("Bem-vindo " + this.retorno.nome);
+					console.log("Bem-vindo " + this.retorno.nome);
 				}
-		},200);	
+		},500);	
 	}
 
 	cadastro(){

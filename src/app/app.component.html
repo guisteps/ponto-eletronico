@@ -1,16 +1,16 @@
 <h2 class="title">Bem vindo {{nome}}</h2>
 <nav>
    <button type="submit" class="btn btn-primary"
-          style="margin-left: 5px;" routerLink="/login" routerLinkActive="active">Login</button>
+          style="margin-left: 10px;" routerLink="/login" routerLinkActive="active">Login</button>
   
   <button type="submit" class="btn btn-primary" [disabled]="!logado"
-          style="margin-left: 5px;" routerLink="/ponto" routerLinkActive="active">Ponto</button>
+          style="margin-left: 10px;" routerLink="/ponto" routerLinkActive="active">Ponto</button>
  
   <button type="submit" class="btn btn-primary" [disabled]="!logado"
-          style="margin-left: 15px;" routerLink="/cadastro" routerLinkActive="active">Cadastro</button>
+          style="margin-left: 10px;" routerLink="/cadastro" routerLinkActive="active">Cadastro</button>
   
   <button type="submit" class="btn btn-primary" [disabled]="!logado"
-          style="margin-left: 15px;" routerLink="/consulta" routerLinkActive="active">Consulta</button>
+          style="margin-left: 10px;" routerLink="/consulta" routerLinkActive="active">Consulta</button>
 </nav>
 <br>
 <router-outlet></router-outlet>

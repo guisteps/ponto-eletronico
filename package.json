@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-	"postinstall": "ng build"
+    "postinstall": "ng build"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +36,7 @@
     "ng2-input-mask": "0.0.7",
     "ngx-bootstrap": "^1.9.3",
     "nodemon": "^1.12.1",
+    "primeng": "^5.0.0-rc.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

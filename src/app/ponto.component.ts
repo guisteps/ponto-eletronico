@@ -20,7 +20,7 @@ export class PontoComponent {
 	constructor(private pontoService: PontoFuncionarioService, private funcLogadoService: FuncionarioLogadoService) {
 		let hoje = new Date();
 		let cpf = this.funcLogadoService.funcionario.cpf;
-		this.dataHoje = hoje.getDate().toString() + (hoje.getMonth()+1).toString() + hoje.getFullYear().toString();
+		this.dataHoje = (hoje.getDate() < 10 ? "0" : "") + hoje.getDate().toString() + (hoje.getMonth()+1).toString() + hoje.getFullYear().toString();
 		this.ponto =  new PontoFuncionario(cpf, this.dataHoje, null, null, null, null);	
 	}	
 	

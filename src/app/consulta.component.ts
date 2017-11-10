@@ -25,27 +25,25 @@ export class ConsultaComponent implements OnInit{
 			  private pontoService: PontoFuncionarioService){}
   
   ngOnInit(){
-  	setTimeout(() => {
-  		this.funcionarioService.getAllFunc().subscribe(
-			result => this.funcionarios = result.users);
+	this.funcionarioService.getAllFunc().subscribe(
+		result => this.funcionarios = result.users);
 
-		this.meses[0] =  {'value': '01', 'name': 'Janeiro'};
-		this.meses[1] =  {'value': '02', 'name': 'Fevereiro'};
-		this.meses[2] =  {'value': '03', 'name': 'Março'};
-		this.meses[3] =  {'value': '04', 'name': 'Abril'};
-		this.meses[4] =  {'value': '05', 'name': 'Maio'};
-		this.meses[5] =  {'value': '06', 'name': 'Junho'};
-		this.meses[6] =  {'value': '07', 'name': 'Julho'};
-		this.meses[7] =  {'value': '08', 'name': 'Agosto'};
-		this.meses[8] =  {'value': '09', 'name': 'Setembro'};
-		this.meses[9] =  {'value': '10', 'name': 'Outubro'};
-		this.meses[10] = {'value': '11', 'name': 'Novembro'};
-		this.meses[11] = {'value': '12', 'name': 'Dezembro'};
-				   
-		for(let i = 2017; i <= (new Date()).getFullYear(); i++){
-			this.anos.push(i);
-		}
-	},300); 	
+	this.meses[0] =  {'value': '01', 'name': 'Janeiro'};
+	this.meses[1] =  {'value': '02', 'name': 'Fevereiro'};
+	this.meses[2] =  {'value': '03', 'name': 'Março'};
+	this.meses[3] =  {'value': '04', 'name': 'Abril'};
+	this.meses[4] =  {'value': '05', 'name': 'Maio'};
+	this.meses[5] =  {'value': '06', 'name': 'Junho'};
+	this.meses[6] =  {'value': '07', 'name': 'Julho'};
+	this.meses[7] =  {'value': '08', 'name': 'Agosto'};
+	this.meses[8] =  {'value': '09', 'name': 'Setembro'};
+	this.meses[9] =  {'value': '10', 'name': 'Outubro'};
+	this.meses[10] = {'value': '11', 'name': 'Novembro'};
+	this.meses[11] = {'value': '12', 'name': 'Dezembro'};
+			   
+	for(let i = 2017; i <= (new Date()).getFullYear(); i++){
+		this.anos.push(i);
+	}	
   }
   
   
@@ -54,14 +52,24 @@ export class ConsultaComponent implements OnInit{
 	this.pontoService.getFuncPontoMes(this.cpf, mesAno)
 		.subscribe(result => this.pontos = result.pontos);
 	
-	/*if(typeof this.pontos != 'undefined'){
-		this.pontos.forEach( function(p){
-			p.entrada.setUTCDate(p.entrada);
-			p.idaIntervalo.setUTCDate(p.idaIntervalo);
-			p.voltaIntervalo.setUTCDate(p.voltaIntervalo);
-			p.saida.setUTCDate(p.saida);
-		});
-	}*/
+	setTimeout(() => {	
+		if(typeof this.pontos != 'undefined'){
+			this.pontos.forEach( p => {
+				p.dia = p.dia.substring(0,2) +'/'+ p.dia.substring(2,4) +'/'+ p.dia.substring(4,8);
+				p.strEntrada  = this.formataData(p.entrada);
+				p.strIdaIntervalo  = this.formataData(p.idaIntervalo);
+				p.strVoltaIntervalo = this.formataData(p.voltaIntervalo);
+				p.strSaida = this.formataData(p.saida);
+			});
+		}
+	}, 100);
+  }
+
+
+  private formataData(data) : string {
+  	var d = new Date(data).toString(); //trazer para nosso fuso-horario
+
+  	return d.substring(16,21);
   }
 
 }

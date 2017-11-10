@@ -8,7 +8,7 @@
 </style>
 
 <form #consultaForm="ngForm">
-<div style="width: 900px; height: 340px; border-radius: 25px;
+<div style="width: 900px; height: 100%; border-radius: 25px;
           margin: 0 auto; background-color: mistyrose;">
   <div style="margin-left: 50px;">
     <br><br>
@@ -25,8 +25,8 @@
 		</select>
 			
 		 <label class="control-label main-info" style="font-size: 16px; margin-left: 20px">Funcionario:</label>
-		 <select [(ngModel)]="cpf" style="width:300px;" name="funcionario" required>
-		   <option *ngFor="let func of funcionarios" [ngValue]="funcionario?.cpf" > {{funcionario?.nome}} </option>
+		 <select [(ngModel)]="cpf" style="width:300px;" name="func" required>
+		   <option *ngFor="let func of funcionarios" [ngValue]="func?.cpf" > {{func?.nome}} </option>
 		</select> 
 		 
 	<br><br>
@@ -45,13 +45,13 @@
 		  </tr>
 		</thead>
 		<tbody>
-		  <tr>
-			<td>01/10/2017</td>
-			<td>08:00</td>
-			<td>12:00</td>
-			<td>13:00</td>
-			<td>18:00</td>
-		  </tr>
+		    <tr *ngFor="let item of pontos">
+				<td><h5><strong>{{item.dia}}</strong></h5></td>
+				<td><h5>{{item.strEntrada}}</h5></td>
+				<td><h5>{{item.strIdaIntervalo}}</h5></td>
+				<td><h5>{{item.strVoltaIntervalo}}</h5></td>
+				<td><h5>{{item.strSaida}}</h5></td>
+			</tr>
 		 </tbody>
 		</table>
 	</div>
