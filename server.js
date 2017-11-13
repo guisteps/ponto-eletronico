@@ -9,7 +9,6 @@ class Server{
 
 	constructor(){
 		this.port = 3000;
-		this.host = 'localhost';
 		this.app = express();
 	}
 
@@ -30,8 +29,9 @@ class Server{
 	appExecute(){
 		this.appConfig();
 		this.includeRoutes();
-		this.app.set('port', (process.env.PORT || this.port));
-		console.log('nodezão rodando: ' + this.port);
+		this.app.listen(process.env.PORT || this.port, () => {
+ 			console.log('nodejs aqui http://localhost:3000');
+  		});
 	}
 }
 

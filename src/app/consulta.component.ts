@@ -3,6 +3,7 @@ import { Funcionario } from './back/funcionario';
 import { PontoFuncionario } from './back/pontoFuncionario';
 import { FuncionarioService } from './servicos/funcionario.service';
 import { PontoFuncionarioService } from './servicos/ponto-funcionario.service';
+import { FuncionarioLogadoService } from './servicos/funcionario-logado.service';
 
 @Component({
   selector: 'consulta',
@@ -14,6 +15,7 @@ export class ConsultaComponent implements OnInit{
   
   public funcionarios: Funcionario[] = [];
   public pontos: PontoFuncionario[] = [];
+  public listaExcel : PontoExcel[] = [];
   public anos: number[] = [];
   public meses = [];
   public mes: string;
@@ -22,7 +24,8 @@ export class ConsultaComponent implements OnInit{
   
   
   constructor(private funcionarioService: FuncionarioService,
-			  private pontoService: PontoFuncionarioService){}
+			  private pontoService: PontoFuncionarioService,
+			  private funcLogadoService: FuncionarioLogadoService){}
   
   ngOnInit(){
 	this.funcionarioService.getAllFunc().subscribe(
@@ -68,8 +71,36 @@ export class ConsultaComponent implements OnInit{
 
   private formataData(data) : string {
   	var d = new Date(data).toString(); //trazer para nosso fuso-horario
-
   	return d.substring(16,21);
   }
 
+
+  public exportaExcel(){
+  	this.listaExcel = [];
+  	//montando o titulo
+  	var nome = this.funcLogadoService.funcionario.nome;
+  	nome = nome.substr(0,nome.indexOf(' '));
+  	var titulo = 'Relatorio_' + nome + '_' + this.meses[+this.mes - 1].name + '_' + this.ano ;
+
+  	//montando a lista
+    this.listaExcel[0] = new PontoExcel('Dia', 'Entrada', 'Ida Intervalo', 'Volta Intervalo', 'Saida');
+	this.pontos.forEach( p => {
+		let excel = new PontoExcel(p.dia, p.strEntrada, p.strIdaIntervalo, p.strVoltaIntervalo, p.strSaida);
+		this.listaExcel.push(excel);
+	});
+
+	//executando
+	}
+
+}
+
+
+export class PontoExcel {
+	constructor(
+	public dia: string,
+	public entrada: string,
+	public idaIntervalo: string,
+	public voltaIntervalo: string,
+	public saida: string
+	) {}
 }
