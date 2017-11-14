@@ -4,6 +4,15 @@ import { PontoFuncionario } from './back/pontoFuncionario';
 import { FuncionarioService } from './servicos/funcionario.service';
 import { PontoFuncionarioService } from './servicos/ponto-funcionario.service';
 import { FuncionarioLogadoService } from './servicos/funcionario-logado.service';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
+function s2ab(s: string): ArrayBuffer {
+	const buf: ArrayBuffer = new ArrayBuffer(s.length);
+	const view: Uint8Array = new Uint8Array(buf);
+	for (let i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+	return buf;
+}
 
 @Component({
   selector: 'consulta',
@@ -80,17 +89,26 @@ export class ConsultaComponent implements OnInit{
   	//montando o titulo
   	var nome = this.funcLogadoService.funcionario.nome;
   	nome = nome.substr(0,nome.indexOf(' '));
-  	var titulo = 'Relatorio_' + nome + '_' + this.meses[+this.mes - 1].name + '_' + this.ano ;
+  	var titulo = 'Relatorio_' + nome + '_' + this.meses[+this.mes - 1].name + '_' + this.ano + '.xlsx' ;
 
   	//montando a lista
-    this.listaExcel[0] = new PontoExcel('Dia', 'Entrada', 'Ida Intervalo', 'Volta Intervalo', 'Saida');
+    //this.listaExcel[0] = new PontoExcel('Dia', 'Entrada', 'Ida Intervalo', 'Volta Intervalo', 'Saida');
 	this.pontos.forEach( p => {
 		let excel = new PontoExcel(p.dia, p.strEntrada, p.strIdaIntervalo, p.strVoltaIntervalo, p.strSaida);
 		this.listaExcel.push(excel);
 	});
 
-	//executando
-	}
+	/* make the worksheet */
+	var ws = XLSX.utils.json_to_sheet(this.listaExcel);
+	
+	/* add to workbook */
+	var wb = XLSX.utils.book_new();
+	XLSX.utils.book_append_sheet(wb, ws, "Pontos");
+
+	/* write workbook (use type 'binary') */
+	var wbout = XLSX.write(wb, {bookType:'xlsx', type:'binary'});
+	saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), titulo);
+  }
 
 }
 
