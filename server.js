@@ -15,7 +15,8 @@ class Server{
 	appConfig(){
 		this.app.use(bodyParser.json());
 		this.app.use(cors());
-		this.app.use(express.static(__dirname + 'public'));
+		var distDir = __dirname + "/dist/";
+    this.app.use(express.static(distDir));
 	}
 
 	
