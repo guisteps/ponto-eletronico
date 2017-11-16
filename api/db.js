@@ -9,7 +9,7 @@ const MongoUrl='mongodb://localhost:27017/angular2';
 
 module.exports.onConnect = (callback) => {	
 
-	MongoClient.connect(MongoUrl, (err, db) => {
+	MongoClient.connect(process.env.MONGODB_URI || MongoUrl, (err, db) => {
 		assert.equal(null, err);
 		callback(db,ObjectID);
 	});
