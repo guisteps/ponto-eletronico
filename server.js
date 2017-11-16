@@ -15,14 +15,17 @@ class Server{
 	appConfig(){
 		this.app.use(bodyParser.json());
 		this.app.use(cors());
-		var distDir = __dirname + 'public';
-		this.app.use(express.static(distDir));
+		this.app.use(express.static(__dirname + 'public'));
 	}
 
 	
 	includeRoutes(){
 		new funcionarioRoutes(this.app).routesConfig();
 		new pontoRoutes(this.app).routesConfig();
+    
+    this.app.get('/', function(request, response) {
+     response.send('Hello World!');
+    });
 	}
 		
 
