@@ -10,9 +10,9 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class PontoFuncionarioService {
   
-  private BASE_URL:string = 'http://localhost:3000/api/ponto-funcionario/';
-  private BASE_URL_DIA:string = 'http://localhost:3000/api/ponto-funcionario-dia/';
-  private BASE_URL_MES:string = 'http://localhost:3000/api/ponto-funcionario-mes/';
+  private BASE_URL:string = 'https://localhost:3000/api/ponto-funcionario/';
+  private BASE_URL_DIA:string = 'https://localhost:3000/api/ponto-funcionario-dia/';
+  private BASE_URL_MES:string = 'https://localhost:3000/api/ponto-funcionario-mes/';
 
     constructor(
 	        private http: Http
@@ -35,7 +35,7 @@ export class PontoFuncionarioService {
 		let options = new RequestOptions({
         	headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
         });
-		return this.http.put('http://localhost:3000/api/ponto-funcionario-entrada/',JSON.stringify(body), options)
+		return this.http.put('https://localhost:3000/api/ponto-funcionario-entrada/',JSON.stringify(body), options)
 			.map((res:Response) => res.json())
 			.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 	}
@@ -44,7 +44,7 @@ export class PontoFuncionarioService {
 		let options = new RequestOptions({
         	headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
         });
-		return this.http.put('http://localhost:3000/api/ponto-funcionario-idaintervalo/',JSON.stringify(body), options)
+		return this.http.put('https://localhost:3000/api/ponto-funcionario-idaintervalo/',JSON.stringify(body), options)
 			.map((res:Response) => res.json())
 			.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 	}
@@ -53,7 +53,7 @@ export class PontoFuncionarioService {
 		let options = new RequestOptions({
         	headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
         });
-		return this.http.put('http://localhost:3000/api/ponto-funcionario-voltaintervalo/',JSON.stringify(body), options)
+		return this.http.put('https://localhost:3000/api/ponto-funcionario-voltaintervalo/',JSON.stringify(body), options)
 			.map((res:Response) => res.json())
 			.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 	}
@@ -62,7 +62,7 @@ export class PontoFuncionarioService {
 		let options = new RequestOptions({
         	headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
         });
-		return this.http.put('http://localhost:3000/api/ponto-funcionario-saida/',JSON.stringify(body), options)
+		return this.http.put('https://localhost:3000/api/ponto-funcionario-saida/',JSON.stringify(body), options)
 			.map((res:Response) => res.json())
 			.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 	}
@@ -82,20 +82,6 @@ export class PontoFuncionarioService {
 			.map((res:Response) => res.json())
 			.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 	}*/
-	
 
-	addURLParm(name, value) {
-    var re = new RegExp("([?&]" + name + "=)[^&]+", "");
-
-		if (this.BASE_URL.indexOf("?") === -1) {
-			this.BASE_URL += "?" + name + "=" + encodeURIComponent(value);
-		} else {
-			if (re.test(this.BASE_URL)) {
-				this.BASE_URL = this.BASE_URL.replace(re, "$1" + encodeURIComponent(value));
-			} else {
-				this.BASE_URL += "&" + name + "=" + encodeURIComponent(value);
-			}
-		}
-	}
 
 }

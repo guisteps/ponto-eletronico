@@ -67,8 +67,6 @@ class funcionarioRoutes{
 		});
 
 
-
-		/* Route to delete user starts*/
 		this.app.delete('/api/users/:id',(request,response) =>{
 
 			if (request.params.id && request.params.id!='') {
@@ -110,10 +108,8 @@ class funcionarioRoutes{
 				});
 			}
 		});
-		/* Route to delete user ends*/
 		
 
-		/* Route to update user starts*/
 		this.app.put('/api/users/:id',(request,response) =>{
 
 
@@ -157,7 +153,6 @@ class funcionarioRoutes{
 				});
 			}			
 		});
-		/* Route to update user ends*/
 		
 	}
 

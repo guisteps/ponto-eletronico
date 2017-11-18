@@ -10,8 +10,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class FuncionarioService {
 
-  private BASE_URL:string = 'http://localhost:3000/api/users/';
-  private BASE_URL_LOGIN:string = 'http://localhost:3000/api/user-login/';
+  private BASE_URL:string = 'https://localhost:3000/api/users/';
+  private BASE_URL_LOGIN:string = 'https://localhost:3000/api/user-login/';
 
     constructor(
 	        private http: Http
@@ -46,7 +46,7 @@ export class FuncionarioService {
         	headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
         });
 
-		return this.http.put('http://localhost:3000/api/users/${body[cpf]}',JSON.stringify(body), options)
+		return this.http.put('https://localhost:3000/api/users/${body[cpf]}',JSON.stringify(body), options)
 			.map((res:Response) => res.json())
 			.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 	}
@@ -57,7 +57,7 @@ export class FuncionarioService {
         	headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
         });
 
-		return this.http.delete('http://localhost:3000/api/users/${cpf}',options)
+		return this.http.delete('https://localhost:3000/api/users/${cpf}',options)
 			.map((res:Response) => res.json())
 			.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 	}
