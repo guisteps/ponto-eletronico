@@ -16,6 +16,9 @@ app.use(express.static(__dirname + "/dist/"));
 
 new funcionarioRoutes(app).routesConfig();
 new pontoRoutes(app).routesConfig();
+app.get('/', function(request, response) {		
+     response.send('Hello World!');
+     });
 
 
 var sslOptions = {
