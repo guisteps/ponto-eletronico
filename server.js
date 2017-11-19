@@ -14,10 +14,18 @@ class Server{
  	}
 
 	appConfig(){		 
+		this.app.use(function (req, res, next){
+		  if (req.headers['x-forwarded-proto'] === 'https') {
+			res.redirect('http://' + req.hostname + req.url);
+		  } else {
+			next();
+		  }
+		});
+		
  		this.app.use(bodyParser.json());		 
  		this.app.use(cors());		 
  		var distDir = __dirname + "/dist/";		 
-		this.app.use(express.static(distDir));		 
+		this.app.use(express.static(distDir));
  	}
 
 	includeRoutes(){		 
