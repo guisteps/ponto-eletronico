@@ -5,13 +5,15 @@ import {Observable} from 'rxjs/Rx';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class FuncionarioService {
-
-  private BASE_URL:string = 'http://localhost:3000/api/users/';
-  private BASE_URL_LOGIN:string = 'http://localhost:3000/api/user-login/';
+  
+  private apiUrl:string = environment.apiUrl;
+  private BASE_URL:string = this.apiUrl + '/api/users/';
+  private BASE_URL_LOGIN:string = this.apiUrl + '/api/user-login/';
 
     constructor(
 	        private http: Http
