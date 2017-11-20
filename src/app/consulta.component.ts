@@ -74,7 +74,7 @@ export class ConsultaComponent implements OnInit{
 				p.strSaida = this.formataData(p.saida);
 			});
 		}
-	}, 100);
+	}, 200);
   }
 
 
