@@ -6,18 +6,26 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { environment } from '../../environments/environment';
+import { isDevMode } from '@angular/core';
 
 
 @Injectable()
 export class FuncionarioService {
   
-  private apiUrl:string = environment.apiUrl;
-  private BASE_URL:string = this.apiUrl + '/api/users/';
-  private BASE_URL_LOGIN:string = this.apiUrl + '/api/user-login/';
+  private apiUrl:string;
+  private BASE_URL:string;
+  private BASE_URL_LOGIN:string;
 
-    constructor(
-	        private http: Http
-	) { }
+    constructor(private http: Http) { 
+    	if(isDevMode()){
+    		this.apiUrl = environment.apiUrl;
+    	} else{
+    		this.apiUrl = environment.apiUrlProd;
+    	}
+
+    	this.BASE_URL = this.apiUrl + '/api/users/';
+        this.BASE_URL_LOGIN = this.apiUrl + '/api/user-login/';
+    }
 
 
 	public getAllFunc(){

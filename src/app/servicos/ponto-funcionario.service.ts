@@ -6,22 +6,33 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { environment } from '../../environments/environment';
-
+import { isDevMode } from '@angular/core';
 
 @Injectable()
 export class PontoFuncionarioService {
   
-  private apiUrl:string = environment.apiUrl;
-  private BASE_URL_DIA:string = this.apiUrl + '/api/ponto-funcionario-dia/';
-  private BASE_URL_MES:string = this.apiUrl + '/api/ponto-funcionario-mes/';
-  private BASE_URL_ENTRADA:string = this.apiUrl + '/api/ponto-funcionario-entrada/';
-  private BASE_URL_IDAINTERVALO:string = this.apiUrl + '/api/ponto-funcionario-idaintervalo/';
-  private BASE_URL_VOLTAINTERVALO:string = this.apiUrl + '/api/ponto-funcionario-voltaintervalo/';
-  private BASE_URL_SAIDA:string = this.apiUrl + '/api/ponto-funcionario-saida/';
+  private apiUrl:string;
+  private BASE_URL_DIA:string;
+  private BASE_URL_MES:string;
+  private BASE_URL_ENTRADA:string;
+  private BASE_URL_IDAINTERVALO;
+  private BASE_URL_VOLTAINTERVALO;
+  private BASE_URL_SAIDA:string;
 
-    constructor(
-	        private http: Http
-	) { }
+    constructor(private http: Http) { 
+    	if(isDevMode()){
+    		this.apiUrl = environment.apiUrl;
+    	} else{
+    		this.apiUrl = environment.apiUrlProd;
+    	}
+
+      this.BASE_URL_DIA = this.apiUrl + '/api/ponto-funcionario-dia/';
+	  this.BASE_URL_MES = this.apiUrl + '/api/ponto-funcionario-mes/';
+	  this.BASE_URL_ENTRADA = this.apiUrl + '/api/ponto-funcionario-entrada/';
+	  this.BASE_URL_IDAINTERVALO = this.apiUrl + '/api/ponto-funcionario-idaintervalo/';
+	  this.BASE_URL_VOLTAINTERVALO = this.apiUrl + '/api/ponto-funcionario-voltaintervalo/';
+	  this.BASE_URL_SAIDA = this.apiUrl + '/api/ponto-funcionario-saida/';
+    }
 
 	
 	public getPontoFunc(body: PontoFuncionario) {
