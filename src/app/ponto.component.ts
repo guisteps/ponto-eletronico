@@ -96,10 +96,10 @@ export class PontoComponent {
 				   break;
 			   } 
 			    default: {
-			    	alert('Selecione uma opção.');
+			    	alert('Selecione uma opÃ§Ã£o.');
 			    }
 			} //FIM DO SWITCH
-		},200);		
+		},500);		
 	}
 	
 }
