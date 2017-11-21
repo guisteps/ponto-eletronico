@@ -42,7 +42,7 @@ export class ConsultaComponent implements OnInit{
 
 	this.meses[0] =  {'value': '01', 'name': 'Janeiro'};
 	this.meses[1] =  {'value': '02', 'name': 'Fevereiro'};
-	this.meses[2] =  {'value': '03', 'name': 'Março'};
+	this.meses[2] =  {'value': '03', 'name': 'MarÃ§o'};
 	this.meses[3] =  {'value': '04', 'name': 'Abril'};
 	this.meses[4] =  {'value': '05', 'name': 'Maio'};
 	this.meses[5] =  {'value': '06', 'name': 'Junho'};
@@ -74,7 +74,7 @@ export class ConsultaComponent implements OnInit{
 				p.strSaida = this.formataData(p.saida);
 			});
 		}
-	}, 200);
+	}, 500);
   }
 
 
