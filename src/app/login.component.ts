@@ -1,4 +1,4 @@
-import { Component, EventEmitter,Output, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Output, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Funcionario } from './back/funcionario';
@@ -7,41 +7,41 @@ import { AppComponent } from './app.component';
 import { FuncionarioLogadoService } from './servicos/funcionario-logado.service';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  providers: [ FuncionarioService ]
+	selector: 'login',
+	templateUrl: './login.component.html',
+	providers: [FuncionarioService]
 })
 
-export class LoginComponent implements OnChanges{
+export class LoginComponent implements OnChanges {
 
-	public funcLogin:Funcionario = new Funcionario('','','','');
-	public retorno:Funcionario = new Funcionario('','','','');
-	
-	constructor(private funcService: FuncionarioService, 
-			    public router: Router, 
-				private funcLogadoService: FuncionarioLogadoService,
-				private appComponent: AppComponent){}
-	
-	ngOnChanges(changes: any){}
+	public funcLogin: Funcionario = new Funcionario('', '', '', '');
+	public retorno: Funcionario = new Funcionario('', '', '', '');
 
-	login(){
+	constructor(private funcService: FuncionarioService,
+		public router: Router,
+		private funcLogadoService: FuncionarioLogadoService,
+		private appComponent: AppComponent) {
+	}
+
+	ngOnChanges(changes) { }
+
+	login() {
 		this.funcService.login(this.funcLogin.cpf, this.funcLogin.senha)
-			.subscribe(result => this.retorno = result.funcionario[0]);
-		
-		setTimeout(() => {
-				if(typeof this.retorno == 'undefined' || this.retorno.cpf == "") {
+			.subscribe((result) => {
+				this.retorno = result.funcionario[0];
+				
+				if (typeof this.retorno == 'undefined' || this.retorno.cpf == "") {
 					alert("Falha no login!");
-				}else{
+				} else {
 					this.funcLogadoService.funcionario = this.retorno;
 					this.appComponent.nome = this.retorno.nome;
 					this.appComponent.logado = true;
 					this.router.navigate(['/ponto']);
-					console.log("Bem-vindo " + this.retorno.nome);
 				}
-		},500);	
+			});
 	}
 
-	cadastro(){
+	cadastro() {
 		this.router.navigate(['/cadastro']);
 	}
 
