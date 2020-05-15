@@ -26,6 +26,8 @@ export class LoginComponent implements OnChanges {
 	ngOnChanges(changes) { }
 
 	login() {
+		this.funcLogin.cpf = this.funcLogin.cpf.replace(/\D/g,'');
+
 		this.funcService.login(this.funcLogin.cpf, this.funcLogin.senha)
 			.subscribe((result) => {
 				this.retorno = result.funcionario[0];
