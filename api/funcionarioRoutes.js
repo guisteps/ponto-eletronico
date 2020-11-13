@@ -27,6 +27,7 @@ class funcionarioRoutes{
 		
 		this.app.get('/api/user-login/:cpf/:senha',(request, response) =>{
 			funcionario.getUserLogin( request.params.cpf, request.params.senha, (result) => {
+				console.log('result', result)
 				if (result) {
 					response.status(200).json({
 						funcionario:result
